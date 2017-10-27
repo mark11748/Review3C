@@ -22,13 +22,16 @@ namespace HairSalon.Models
             else
             {
                 Stylist newStylist = (Stylist) otherStylist;
-                return this.GetId().Equals(newStylist.GetId());
+                bool idEquality = this.GetId() == newStylist.GetId();
+                bool nameEquality  = this.GetName() == newStylist.GetName();
+                return (idEquality && nameEquality);
             }
         }
         public override int GetHashCode()
         {
-            return this.GetId().GetHashCode();
+            return this.GetName().GetHashCode();
         }
+
         public string GetName()
         {
             return _name;

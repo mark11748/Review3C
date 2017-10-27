@@ -30,24 +30,23 @@ namespace HairSalon.Models
           {
              Client newClient = (Client) otherClient;
              bool idEquality = this.GetId() == newClient.GetId();
-             bool nameEquality = (this.GetFirstName()+ " " +this.GetLastName()) == (newClient.GetFirstName()+ " " +newClient.GetLastName());
+             bool nameEquality = this.GetName() == newClient.GetName();
              bool stylistEquality = this.GetStylistId() == newClient.GetStylistId();
              return (idEquality && nameEquality && stylistEquality);
            }
         }
         public override int GetHashCode()
         {
-             return this.GetDescription().GetHashCode();
+             return this.GetName().GetHashCode();
         }
 
         public string GetFirstName()
-        {
-            return _fname;
-        }
+        { return _fname; }
         public string GetLastName()
-        {
-          return _lname;
-        }
+        { return _lname; }
+        public string GetName()
+        { return _fname+" "+_lname; }
+
         public int GetId()
         {
             return _id;
