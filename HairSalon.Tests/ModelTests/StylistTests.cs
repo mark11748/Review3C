@@ -56,17 +56,28 @@ namespace HairSalon.Tests
 
         Assert.AreEqual(1, result );
       }
-
       //TEST: create obj stylist on database from a passed instance of stylist
-      // [TestMethod]
-      // public void Save_Stylist()
-      // {
-      //   Stylist newStylist = new Stylist("bill");
-      //
-      //   newStylist.Save();
-      //
-      //   List<Stylist> stylistList = Stylist.GetAll();
-      //   Assert.AreEqual(0, Stylist.GetAll);
-      //}
+      [TestMethod]
+      public void Save_Stylist()
+      {
+        Stylist newStylist = new Stylist("bill");
+        newStylist.Save();
+
+        List<Stylist> stylistList = Stylist.GetAll();
+
+        foreach (Stylist x in Stylist.GetAll()) { Console.WriteLine(x.GetId() + " : "+x.GetName()); }
+
+        Assert.AreEqual(1, Stylist.GetAll().Count);
+      }
+
+      [TestMethod]
+      public void DeleteAll_Stylist()
+      {
+        Stylist.DeleteAll();
+
+        foreach (Stylist x in Stylist.GetAll()) { Console.WriteLine(x.GetId() + " : "+x.GetName()); }
+
+        Assert.AreEqual(0,Stylist.GetAll().Count);
+      }
    }
 }
