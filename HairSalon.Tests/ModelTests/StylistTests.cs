@@ -73,11 +73,31 @@ namespace HairSalon.Tests
       [TestMethod]
       public void DeleteAll_Stylist()
       {
+
+        foreach (Stylist x in Stylist.GetAll()) { Console.WriteLine("** "+x.GetId() + " : "+x.GetName()+" **"); }
         Stylist.DeleteAll();
+
+        Assert.AreEqual(0,Stylist.GetAll().Count);
+
+
+      }
+
+      [TestMethod]
+      public void Find_Stylist()
+      {
+        Stylist newStylistA = new Stylist("sam");
+        newStylistA.Save();
+        Stylist newStylistB = new Stylist("sally");
+        newStylistB.Save();
+        Stylist newStylistC = new Stylist("smith");
+        newStylistC.Save();
+        Stylist newStylistD = new Stylist("bob");
+        newStylistD.Save();
 
         foreach (Stylist x in Stylist.GetAll()) { Console.WriteLine(x.GetId() + " : "+x.GetName()); }
 
-        Assert.AreEqual(0,Stylist.GetAll().Count);
+        Assert.AreEqual(true,Stylist.Find(1).Equals(Stylist.GetAll()[0]));
+
       }
    }
 }

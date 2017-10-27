@@ -83,7 +83,26 @@ namespace HairSalon.Models
                conn.Dispose();
            }
         }
+        public static Stylist Find(int id=0)
+        {
+          string foundName="Id Not Found";
 
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          MySqlCommand cmd = conn.CreateCommand();
+          cmd.CommandText  = @"SELECT * FROM `stylists` WHERE id = @searchId;";
+          MySqlParameter searchId = new MySqlParameter();
+          searchId.ParameterName = "@searchId";
+          searchId.Value = id;
+          cmd.Parameters.Add(searchId);
+          MySqlDataReader rdr = cmd.ExecuteReader();
+          while (rdr.Read())
+          {
+            foundName = rdr.GetString(0);
+          }
+          Stylist wantedStylist = new Stylist(foundName,id);
+          return wantedStylist;
+        }
         public static void DeleteAll()
         {
           MySqlConnection conn = DB.Connection();
@@ -91,9 +110,10 @@ namespace HairSalon.Models
 
           MySqlCommand cmd = conn.CreateCommand();
 
-          cmd.CommandText = @"DELETE FROM `stylists`;";
+          cmd.CommandText = @"DELETE FROM `stylists`; ALTER TABLE `stylists` AUTO_INCREMENT = 1
+";
           cmd.ExecuteNonQuery();
-          
+
           conn.Close();
            if (conn != null)
            {
