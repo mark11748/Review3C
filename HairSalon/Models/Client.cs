@@ -6,16 +6,16 @@ namespace HairSalon.Models
 {
     public class Client
     {
-        private string _description;
-        private string _dueDate;
+        private string _fname;
+        private string _lname;
         private int _id;
-        private int _employeeId;
+        private int _stylistId;
 
-        public Client(string description, string dueDate, int employeeId = 0, int id = 0)
+        public Client(string fname, string lname, int stylistId = 0, int id = 0)
         {
-            _description = description;
-            _dueDate = dueDate;
-            _employeeId = employeeId;
+            _fname = fname;
+            _lname = lname;
+            _stylistId = stylistId;
             _id = id;
         }
 
@@ -30,9 +30,9 @@ namespace HairSalon.Models
           {
              Client newClient = (Client) otherClient;
              bool idEquality = this.GetId() == newClient.GetId();
-             bool descriptionEquality = this.GetDescription() == newClient.GetDescription();
-             bool employeeEquality = this.GetEmployeeId() == newClient.GetEmployeeId();
-             return (idEquality && descriptionEquality && employeeEquality);
+             bool nameEquality = (this.GetFirstName()+ " " +this.GetLastName()) == (newClient.GetFirstName()+ " " +newClient.GetLastName());
+             bool stylistEquality = this.GetStylistId() == newClient.GetStylistId();
+             return (idEquality && nameEquality && stylistEquality);
            }
         }
         public override int GetHashCode()
@@ -40,21 +40,21 @@ namespace HairSalon.Models
              return this.GetDescription().GetHashCode();
         }
 
-        public string GetDescription()
+        public string GetFirstName()
         {
-            return _description;
+            return _fname;
         }
-        public string GetDueDate()
+        public string GetLastName()
         {
-          return _dueDate;
+          return _lname;
         }
         public int GetId()
         {
             return _id;
         }
-        public int GetEmployeeId()
+        public int GetStylistId()
         {
-            return _employeeId;
+            return _stylistId;
         }
 
 

@@ -4,25 +4,25 @@ using System;
 
 namespace HairSalon.Models
 {
-    public class Employee
+    public class Stylist
     {
         private string _name;
         private int _id;
-        public Employee(string name, int id = 0)
+        public Stylist(string name, int id = 0)
         {
             _name = name;
             _id = id;
         }
-        public override bool Equals(System.Object otherEmployee)
+        public override bool Equals(System.Object otherStylist)
         {
-            if (!(otherEmployee is Employee))
+            if (!(otherStylist is Stylist))
             {
                 return false;
             }
             else
             {
-                Employee newEmployee = (Employee) otherEmployee;
-                return this.GetId().Equals(newEmployee.GetId());
+                Stylist newStylist = (Stylist) otherStylist;
+                return this.GetId().Equals(newStylist.GetId());
             }
         }
         public override int GetHashCode()
