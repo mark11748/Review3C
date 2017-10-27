@@ -3,3 +3,15 @@
 <br><br>
 <h3>WEEK 3 REVIEW</h3>
 <br>
+<h2>Crazy Bob's Hair Salon</h2>
+<br>
+<h8>Avalible Stylists:</h5>
+<br>
+@{
+  foreach(Stylist person in @Model.GetAll())
+  {
+    <li>@person.GetName() : @person.GetId()</li>
+  }
+}
+<br><br><br>
+@Html.Partial("Footer");
