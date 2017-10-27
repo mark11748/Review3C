@@ -6,15 +6,13 @@ namespace HairSalon.Models
 {
     public class Client
     {
-        private string _fname;
-        private string _lname;
+        private string _name;
         private int _id;
         private int _stylistId;
 
-        public Client(string fname, string lname, int stylistId = 0, int id = 0)
+        public Client(string name, int stylistId = 0, int id = 0)
         {
-            _fname = fname;
-            _lname = lname;
+            _name = name;
             _stylistId = stylistId;
             _id = id;
         }
@@ -40,12 +38,9 @@ namespace HairSalon.Models
              return this.GetName().GetHashCode();
         }
 
-        public string GetFirstName()
-        { return _fname; }
-        public string GetLastName()
-        { return _lname; }
+
         public string GetName()
-        { return _fname+" "+_lname; }
+        { return _name; }
 
         public int GetId()
         {
@@ -54,6 +49,29 @@ namespace HairSalon.Models
         public int GetStylistId()
         {
             return _stylistId;
+        }
+
+
+        public static List<Client> GetAll()
+        {
+          List<Client> allClients = new List<Client>{};
+          return allClients;
+        }
+
+        public void Save()
+        {
+
+        }
+
+        public static Client Find(int id=0)
+        {
+          Client soughtClient = new Client("PlaceHolder");
+          return soughtClient;
+        }
+
+        public static void DeleteAll()
+        {
+
         }
 
 

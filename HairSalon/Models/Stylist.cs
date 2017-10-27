@@ -33,13 +33,62 @@ namespace HairSalon.Models
         }
 
         public string GetName()
-        {
-            return _name;
-        }
+        { return _name; }
         public int GetId()
+        { return _id; }
+
+        public static List<Stylist> GetAll()
         {
-            return _id;
+          List<Stylist> allStylists = new List<Stylist>{};
+
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+
+          MySqlCommand cmd = conn.CreateCommand();
+          cmd.CommandText = @"SELECT * FROM `stylists`;";
+
+          MySqlDataReader rdr = cmd.ExecuteReader();
+          while (rdr.Read())
+          {
+            string name = rdr.GetString(0);
+            int id      = rdr.GetInt32(1);
+            allStylists.Add(new Stylist(name,id));
+          }
+          conn.Close();
+          if (conn != null)
+          {conn.Dispose();}
+
+          return allStylists;
         }
+
+        public void Save()
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+
+          MySqlCommand cmd = conn.CreateCommand();
+
+          cmd.CommandText = @"INSERT INTO `stylists` (`name`) VALUES (@StylistName);";
+          MySqlParameter name = new MySqlParameter();
+          name.ParameterName = "@StylistName";
+          name.Value = this.GetName();
+          cmd.Parameters.Add(name);
+
+          cmd.ExecuteNonQuery();
+          _id = (int) cmd.LastInsertedId;
+
+          conn.Close();
+           if (conn != null)
+           {
+               conn.Dispose();
+           }
+        }
+
+        public static void DeleteAll()
+        {
+
+        }
+
 
     }
 }

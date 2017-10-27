@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.1",
-    "signature": "22e6300b43ddaae99369d384db740516d4254013"
+    "signature": "0558f87d58f630886779ea75c762245e12ff8b75"
   },
   "compilationOptions": {},
   "targets": {
@@ -11,7 +11,8 @@
           "HairSalon": "1.0.0",
           "MSTest.TestAdapter": "1.1.11",
           "MSTest.TestFramework": "1.1.11",
-          "Microsoft.NET.Test.Sdk": "15.0.0"
+          "Microsoft.NET.Test.Sdk": "15.0.0",
+          "MySqlConnector": "0.29.2"
         },
         "runtime": {
           "HairSalon.Tests.dll": {}
@@ -918,7 +919,7 @@
           "lib/netcoreapp1.0/Microsoft.VisualStudio.TestPlatform.TestFramework.dll": {}
         }
       },
-      "mysqlconnector/0.29.1": {
+      "mysqlconnector/0.29.2": {
         "dependencies": {
           "System.Data.Common": "4.3.0"
         },
@@ -1054,7 +1055,7 @@
           "Microsoft.AspNetCore": "1.1.2",
           "Microsoft.AspNetCore.Mvc": "1.1.3",
           "Microsoft.AspNetCore.StaticFiles": "1.1.3",
-          "MySqlConnector": "0.29.1"
+          "MySqlConnector": "0.29.2"
         },
         "runtime": {
           "HairSalon.dll": {}
@@ -1593,12 +1594,12 @@
       "path": "mstest.testframework/1.1.11",
       "hashPath": "mstest.testframework.1.1.11.nupkg.sha512"
     },
-    "mysqlconnector/0.29.1": {
+    "mysqlconnector/0.29.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-BcJP9ITOMiqbG7mpZxHO02NYPLRIyTXnoJgXLevj/4g35F72dpDoCJMJNgr0p23S0GsZ+CE4pmzogeoFINQ9MA==",
-      "path": "mysqlconnector/0.29.1",
-      "hashPath": "mysqlconnector.0.29.1.nupkg.sha512"
+      "sha512": "sha512-pkahXELIVPq7qdXNUs4KhxUqU2xk8S2V/+7/+NdqG6AnSHonbGn3z5JC5O4ppW7oPTdJenyjj70s8xpKpkDCig==",
+      "path": "mysqlconnector/0.29.2",
+      "hashPath": "mysqlconnector.0.29.2.nupkg.sha512"
     },
     "newtonsoft.json/9.0.1": {
       "type": "package",
