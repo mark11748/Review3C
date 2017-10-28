@@ -7,11 +7,32 @@ namespace HairSalon.Controllers
 {
   public class HomeController : Controller
   {
+    //front page
     [HttpGet("/")]
     public ActionResult Index()
     {
-
       return View();
+    }
+    //list of stylists
+    [HttpGet("/Stylists")]
+    public ActionResult Stylists()
+    {
+      List<Stylist> employees = Stylist.GetAll();
+      return View(employees);
+    }
+    //input field for new stylist
+    [HttpGet("/Stylists/new")]
+    public ActionResult NewStylist()
+    {
+      return View();
+    }
+    //creates new stylist and saves it to database
+    [HttpPost("/Stylists")]
+    public ActionResult AddStylist()
+    {
+      Stylist newStylist = new Stylist(Request.Form["stylist-name"]);
+      newStylist.Save();
+      return View("Index",Stylist.GetAll());
     }
 
 

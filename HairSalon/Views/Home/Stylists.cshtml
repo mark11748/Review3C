@@ -1,0 +1,13 @@
+@{Layout="_Layout";}
+<br><br>
+<br><br>
+<p>Here are all currently working stylists:</p>
+<ul>
+  @foreach(var a in @Model.GetAll())
+  { <li> @a.GetName() : @a.GetId() </li> }
+</ul>
+<br>
+<br>
+<br>
+<p>Click <a href="/Stylists/new">HERE</a> to add a stylist to the list.</p> <br>
+<p>Click <a href="/Stylists/delete">HERE</a> to remove a stylist to the list.</p> <br>
