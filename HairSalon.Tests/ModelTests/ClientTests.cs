@@ -7,9 +7,9 @@ namespace HairSalon.Tests
 {
 
  [TestClass]
- public class StylistTests : IDisposable
+ public class ClientTests : IDisposable
  {
-    public StylistTests()
+    public ClientTests()
     {
        DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=mark_woodward_test;";
     }
@@ -22,7 +22,18 @@ namespace HairSalon.Tests
         [TestMethod]
         public void GetAll_Client_Empty()
         {
-          
+          Client clientA = new Client("bob");
+          Client clientB = new Client("smith");
+
+          List<Client> testList   = new List<Client>{clientA,clientB};
+          List<Client> resultList = Client.GetAll();
+
+          Console.WriteLine("testList   has: " + testList.Count   +" elements");
+          foreach (Client x in testList)   { Console.WriteLine("-> " + x.GetName()); }
+          Console.WriteLine("resultList has: " + resultList.Count +" elements");
+          foreach (Client x in resultList) { Console.WriteLine("-> " + x.GetName()); }
+
+          CollectionAssert.AreEqual(testList,resultList);
         }
 
 
