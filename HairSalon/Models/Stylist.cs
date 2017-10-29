@@ -8,10 +8,9 @@ namespace HairSalon.Models
     {
         private string _name;
         private int _id;
-        public Stylist(string name, int id = 0)
+        public Stylist(string name)
         {
             _name = name;
-            _id = id;
         }
         public override bool Equals(System.Object otherStylist)
         {
@@ -34,8 +33,12 @@ namespace HairSalon.Models
 
         public string GetName()
         { return _name; }
+        public void SetName(string name)
+        { _name = name; }
         public int GetId()
         { return _id; }
+        public void SetId(int id)
+        { _id = id; }
 
         public static List<Stylist> GetAll()
         {
@@ -52,7 +55,9 @@ namespace HairSalon.Models
           {
             string name = rdr.GetString(0);
             int id      = rdr.GetInt32(1);
-            allStylists.Add(new Stylist(name,id));
+            Stylist nextStylist = new Stylist(name);
+            nextStylist.SetId(id);
+            allStylists.Add(nextStylist);
           }
           conn.Close();
           if (conn != null)
@@ -100,7 +105,8 @@ namespace HairSalon.Models
           {
             foundName = rdr.GetString(0);
           }
-          Stylist wantedStylist = new Stylist(foundName,id);
+          Stylist wantedStylist = new Stylist(foundName);
+          wantedStylist.SetId(id);
           return wantedStylist;
         }
         public static void DeleteAll()

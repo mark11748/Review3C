@@ -18,12 +18,32 @@ namespace HairSalon.Tests
           Stylist.DeleteAll();
           Client.DeleteAll();
         }
+        [TestMethod]
+        public void Save_Client()
+        {
+          Stylist Bob  = new Stylist("Bob");
+          Bob.Save();
+          Client  Alex = new Client ("Alex",Bob.GetId());
+          Alex.Save();
 
+          Assert.AreEqual(true,Alex.GetId()>0);
+        }
         [TestMethod]
         public void GetAll_Client_Empty()
         {
-          Client clientA = new Client("bob");
-          Client clientB = new Client("smith");
+          List<Client> resultList = Client.GetAll();
+
+          Assert.AreEqual(true,resultList.Count == 0);
+        }
+        [TestMethod]
+        public void GetAll_Client_HasClients()
+        {
+          Stylist stylistA = new Stylist("anna");
+          stylistA.Save();
+          Client clientA = new Client("bob",stylistA.GetId());
+          clientA.Save();
+          Client clientB = new Client("smith",stylistA.GetId());
+          clientB.Save();
 
           List<Client> testList   = new List<Client>{clientA,clientB};
           List<Client> resultList = Client.GetAll();
