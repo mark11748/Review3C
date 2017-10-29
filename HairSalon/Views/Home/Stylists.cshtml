@@ -7,7 +7,7 @@
   @if(Model != null && Model.Count != 0)
   {
     foreach(var a in Model)
-    { <li> @a.GetName() : @a.GetId() </li> }
+    { <li> <a href="Stylists/@a.GetId()">@a.GetName() : @a.GetId()</a> </li> }
   }
 </ul>
 <p>----------------------------------------</p>

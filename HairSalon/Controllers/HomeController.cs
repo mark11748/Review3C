@@ -41,6 +41,12 @@ namespace HairSalon.Controllers
       Stylist.DeleteAll();
       return View("Stylists");
     }
+    //List clients for seleted stylists
+    [HttpGet("/Stylists/{id}")]
+    public ActionResult StylistClients(int id)
+    {
+      return View();
+    }
 
 
   }

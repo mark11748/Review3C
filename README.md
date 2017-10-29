@@ -11,15 +11,33 @@ This is a C# program that manages a database containing info on stylists and cli
 
 |Behavior | Example Input| Example Output|
 | ---|:---:| :---:|
-| clicking a stylist takes user to a list of that stylists clients|  \*clicks link\*| \* user redirected to list of that stylists clients \* [uses format: client.name : client.id]|
-|->user clicks a client on stylist page|\*clicks link\*|\*user redirected to page with client name form and link home\*|
+| clicking a stylist takes user to a list of that stylists clients| N/a | \* user redirected to list of that stylists clients \* [uses format: client.name : client.id]|
+|->user clicks a client on stylist page| N/a |\*user redirected to page with client name form and link home\*|
 |->>user inputs a name|"Sarah"+\*Submit\*|current client's name is replaced with new name|
-|->user clicks link "remove client" on stylist page|\*clicks link\*|user redirected to page to select id of client to remove|
+|->user clicks link "remove client" on stylist page| N/a |user redirected to page to select id of client to remove|
 |->>user enters id number|"3"|client table in database is searched and, if found, the client with id 3 is deleted|
-|->user clicks link "add client" on stylist page|\*clicks link\*|takes user to form to input new stylist|
-| clicking \*Add\* on homepage | \*clicks link\* | \* user redirected to input form for new stylist \* |
+|->user clicks link "add client" on stylist page| N/a |takes user to form to input new stylist|
+| clicking \*Add\* on homepage | N/a | \* user redirected to input form for new stylist \* |
 | ->user is prompted for new stylist's name in form text field| "George" + \*Submit\* | \*User returned to homepage\* + new entry "George : {id}" displayed
-| user clicks \*Clear\* on homepage| \*clicks link\* | \*clears the list and database table of stylists\* |
+| user clicks \*Clear\* on homepage| N/a | \*clears the list and database table of stylists\* |
+
+
+* @stylist client list:
+
+|behavior								       |	input				   |	output							|
+|---|:---:|:---:|
+|show all clients for selected stylist(has entries) | “3” | list formatted as “clientName : client id” |
+|show all clients for selected stylist(has no entries) | “3” | page displays “no clients have been recorded for this stylist" |
+|add client to stylist’s list(valid name,valid stylist id) | “clientName”+”1" | *new client is recorded*+returns to stylist's list |
+|add client to stylist’s list(invalid name) | “client-N4m3!”+1 |  returns to stylist's list+page displays “Invalid client name; use only alphabetic characters” |
+|add client to stylist’s list(invalid stylist id) | “clientName”+9999 | returns to stylist's list+page displays “Invalid stylist id; check list of stylists for valid ids" |
+|remove all clients from selected stylist	| N/a	| *empties list* |
+|remove one client from selected stylist(valid id) | “1" | returns to stylist's list+page displays remaining clients |
+|remove one client from selected stylist(invalid id) | “1234" | returns to stylist's list+page displays “Invalid client id check list of clients for valid ids" |
+|update a clients name(valid name)   | “newName”    | clients old name is replaced+user returned to client stylist list |
+|update a clients name(invalid name) | “!n3wN4m3*&” | user returned to client stylist list+page displays “Invalid client name; use only alphabetic characters" |
+
+
 
 ### Setup/Installation
 * Download from GitHub.
