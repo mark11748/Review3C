@@ -2,10 +2,15 @@
 <br><br>
 <br><br>
 <p>Here are all currently working stylists:</p>
+<p>----------------------------------------</p>
 <ul>
-  @foreach(var a in @Model.GetAll())
-  { <li> @a.GetName() : @a.GetId() </li> }
+  @if(Model != null && Model.Count != 0)
+  {
+    foreach(var a in Model)
+    { <li> @a.GetName() : @a.GetId() </li> }
+  }
 </ul>
+<p>----------------------------------------</p>
 <br>
 <br>
 <br>

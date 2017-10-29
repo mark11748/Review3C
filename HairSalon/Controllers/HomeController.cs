@@ -32,7 +32,14 @@ namespace HairSalon.Controllers
     {
       Stylist newStylist = new Stylist(Request.Form["stylist-name"]);
       newStylist.Save();
-      return View("Index",Stylist.GetAll());
+      return View("Stylists",Stylist.GetAll());
+    }
+    //Deletes all stylists
+    [HttpGet("/Stylists/delete")]
+    public ActionResult DeleteAll()
+    {
+      Stylist.DeleteAll();
+      return View("Stylists");
     }
 
 

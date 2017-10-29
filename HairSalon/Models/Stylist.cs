@@ -110,8 +110,7 @@ namespace HairSalon.Models
 
           MySqlCommand cmd = conn.CreateCommand();
 
-          cmd.CommandText = @"DELETE FROM `stylists`; ALTER TABLE `stylists` AUTO_INCREMENT = 1
-";
+          cmd.CommandText = @"DELETE FROM `stylists`; ALTER TABLE `stylists` AUTO_INCREMENT = 1;";
           cmd.ExecuteNonQuery();
 
           conn.Close();
