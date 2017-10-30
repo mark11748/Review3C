@@ -127,22 +127,29 @@ namespace HairSalon.Models
         }
         public static void Delete(int id)
         {
-          MySqlConnection conn = DB.Connection();
-          conn.Open();
+          bool valid_Id = false;
+          foreach (Client a in Client.GetAll())
+          { if(a.GetId() == id){valid_Id = true;} }
 
-          MySqlCommand cmd = conn.CreateCommand();
+          if(valid_Id)
+          {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
 
-          cmd.CommandText = @"DELETE FROM `clients` WHERE id=@clientId; ALTER TABLE `clients` AUTO_INCREMENT = 1;";
-          MySqlParameter clientId = new MySqlParameter();
-          clientId.ParameterName  = "@clientId";
-          clientId.Value = id;
-          cmd.Parameters.Add(clientId);
-          cmd.ExecuteNonQuery();
+            MySqlCommand cmd = conn.CreateCommand();
 
-          conn.Close();
-           if (conn != null)
-           {
-               conn.Dispose();
+            cmd.CommandText = @"DELETE FROM `clients` WHERE id=@clientId;";
+            MySqlParameter clientId = new MySqlParameter();
+            clientId.ParameterName  = "@clientId";
+            clientId.Value = id;
+            cmd.Parameters.Add(clientId);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+             if (conn != null)
+             {
+                 conn.Dispose();
+             }
            }
         }
         public void Update(string name = null , int stylistId = 0)

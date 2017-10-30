@@ -1,1 +1,18 @@
-@{Layout = "_Layout";}
+@{Layout="_Layout";}
+<br><br>
+<br><br>
+<p>Here are all clients assigned to @Model.GetStylist().GetName():</p>
+<p>----------------------------------------</p>
+<ul>
+  @if(Model.GetClients() != null && Model.GetClients().Count != 0)
+  {
+    foreach(var a in Model.GetClients())
+    { <li> @a.GetName() : @a.GetId() </li> }
+  }
+</ul>
+<p>----------------------------------------</p>
+<br>
+<br>
+<br>
+<p>Click <a href="/Stylists/Clients/NewClient/@Model.GetStylist().GetId()">HERE</a> to add a client to the list.</p> <br>
+<p>Click <a href="/Stylists/Clients/DEL/@Model.GetStylist().GetId()">HERE</a> to remove a client from the list.</p> <br>
