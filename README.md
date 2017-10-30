@@ -36,6 +36,8 @@ This is a C# program that manages a database containing info on stylists and cli
 |remove one client from selected stylist(invalid id) | “1234" | returns to stylist's list+page displays “Invalid client id check list of clients for valid ids" |
 |update a clients name(valid name)   | “newName”    | clients old name is replaced+user returned to client stylist list |
 |update a clients name(invalid name) | “!n3wN4m3*&” | user returned to client stylist list+page displays “Invalid client name; use only alphabetic characters" |
+|update a clients stylistId(valid)   | "1"    | clients old stylistId is replaced+user returned to client stylist list |
+|update a clients stylistId(invalid) | "987654321" | user returned to client stylist list+page displays “Invalid stylistId; see stylist list for valid ids" |
 
 
 
