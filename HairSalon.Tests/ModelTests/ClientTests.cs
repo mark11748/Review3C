@@ -55,6 +55,36 @@ namespace HairSalon.Tests
 
           CollectionAssert.AreEqual(testList,resultList);
         }
+        [TestMethod]
+        public void Delete_DeleteOneClient_NoEntries()
+        {
+          List<Client> testList = Client.GetAll();
+          Client.Delete(1);
+          List<Client> resultList = Client.GetAll();
+          CollectionAssert.AreEqual(testList,resultList);
+        }
+        [TestMethod]
+        public void Delete_DeleteOneClient_HasEntries()
+        {
+          Stylist stylistA = new Stylist("anna");
+          stylistA.Save();
+          Client clientA = new Client("bob",stylistA.GetId());
+          clientA.Save();
+          Client clientB = new Client("smith",stylistA.GetId());
+          clientB.Save();
+
+          List<Client> testList = Client.GetAll();
+          Console.WriteLine("testList   has: " + testList.Count   +" elements");
+          foreach (Client x in testList)   { Console.WriteLine("-> " + x.GetName()); }
+
+          Client.Delete(clientA.GetId());
+
+          List<Client> resultList = Client.GetAll();
+          Console.WriteLine("resultList has: " + resultList.Count +" elements");
+          foreach (Client x in resultList) { Console.WriteLine("-> " + x.GetName()); }
+
+          Assert.AreEqual(true, testList.Count == resultList.Count+1);
+        }
 
 
 
