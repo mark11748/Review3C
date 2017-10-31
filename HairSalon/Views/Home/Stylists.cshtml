@@ -7,12 +7,12 @@
   @if(Model != null && Model.Count != 0)
   {
     foreach(var a in Model)
-    { <li> <a href="Stylists/Clients/@a.GetId()">@a.GetName() : @a.GetId()</a> </li> }
+    { <li> <a href="stylists/@a.GetId()/clients">@a.GetName() : @a.GetId()</a> </li> }
   }
 </ul>
 <p>----------------------------------------</p>
 <br>
 <br>
 <br>
-<p>Click <a href="/Stylists/new">HERE</a> to add a stylist to the list.</p> <br>
-<p>Click <a href="/Stylists/delete">HERE</a> to remove a stylist to the list.</p> <br>
+<p>Click <a href="/stylists/new">HERE</a> to add a stylist to the list.</p> <br>
+<p>Click <a href="/stylists/delete">HERE</a> to remove a stylist to the list.</p> <br>

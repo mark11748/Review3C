@@ -1,0 +1,13 @@
+@{Layout = "_Layout";}
+<br><br>
+<br><br>
+<form action="/stylists/@Model.GetStylist().GetId()/clients/@Model.GetTarget().GetId()/updated" method="post">
+  <label for="client-name">Change name: </label><br>
+  <input type="text" name="client-name" id="client-name" value="@Model.GetTarget().GetName()" placeholder="@Model.GetTarget().GetName()"><br>
+
+  <label for="client-stylist">Change stylist: </label><br>
+  <input type="number" name="client-stylist" value="@Model.GetTarget().GetStylistId()" placeholder="@Model.GetTarget().GetStylistId()"><br>
+
+
+  <button type="submit">Submit</button>
+</form>

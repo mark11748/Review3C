@@ -15,49 +15,49 @@ namespace HairSalon.Controllers
       return View();
     }
     //list of stylists
-    [HttpGet("/Stylists")]
+    [HttpGet("/stylists")]
     public ActionResult Stylists()
     {
       List<Stylist> employees = Stylist.GetAll();
       return View(employees);
     }
     //input field for new stylist
-    [HttpGet("/Stylists/new")]
+    [HttpGet("/stylists/new")]
     public ActionResult NewStylist()
     {
       return View();
     }
     //creates new stylist and saves it to database
-    [HttpPost("/Stylists")]
+    [HttpPost("/stylists")]
     public ActionResult AddStylist()
     {
       Stylist newStylist = new Stylist(Request.Form["stylist-name"]);
       newStylist.Save();
-      return View("Stylists",Stylist.GetAll());
+      return View("stylists",Stylist.GetAll());
     }
     //Deletes all stylists
-    [HttpGet("/Stylists/delete")]
+    [HttpGet("/stylists/delete")]
     public ActionResult DeleteAll()
     {
       Stylist.DeleteAll();
       return View("Stylists");
     }
     //List clients for seleted stylists
-    [HttpGet("/Stylists/Clients/{id}")]
+    [HttpGet("/stylists/{id}/clients")]
     public ActionResult StylistClients(int id)
     {
       StylistClientsViewModel myModel = new StylistClientsViewModel(id);
       return View(myModel);
     }
     //form to add clients to stylist
-    [HttpGet("/Stylists/Clients/NewClient/{id}")]
+    [HttpGet("/stylists/{id}/clients/newClient/")]
     public ActionResult NewClient(int id)
     {
       StylistClientsViewModel myModel = new StylistClientsViewModel(id);
       return View(myModel);
     }
     //return to client list page for stylist
-    [HttpPost("/Stylists/Clients/{id}")]
+    [HttpPost("/stylists/{id}/clients/")]
     public ActionResult AddClients(int id)
     {
       Client newClient = new Client(Request.Form["client-name"],id);
@@ -67,13 +67,14 @@ namespace HairSalon.Controllers
       return View("StylistClients",myModel);
     }
     //form to select client to delete
-    [HttpGet("/Stylists/Clients/DEL/{id}")]
+    [HttpGet("/stylists/{id}/clients/DEL/")]
     public ActionResult DeleteClient(int id)
     {
       StylistClientsViewModel myModel = new StylistClientsViewModel(id);
       return View(myModel);
     }
-    [HttpPost("/Stylists/Clients/DEL/{id}")]
+    //remove selected client and show client list for current stylist
+    [HttpPost("/stylists/{id}/clients/DEL/")]
     public ActionResult RemoveClient(int id)
     {
       Client.Delete(Int32.Parse(Request.Form["client-id"]));
@@ -90,6 +91,30 @@ namespace HairSalon.Controllers
       StylistClientsViewModel myModel = new StylistClientsViewModel(id);
       return View("StylistClients",myModel);
     }
+    //input updates to client from stylist client list
+    [HttpGet("/stylists/{id}/clients/{clientId}/update/")]
+    public ActionResult UpdateClient(int id , int clientId)
+    {
+      StylistClientsViewModel myModel = new StylistClientsViewModel(id,clientId);
+      return View(myModel);
+    }
+    //implement updates to client
+    [HttpPost("/stylists/{id}/clients/{clientId}/updated")]
+    public ActionResult ChangeClient(int id , int clientId)
+    {
+      string newName=null;
+      int newStylist=0;
+      if (!String.IsNullOrEmpty(Request.Form["client-name"]))
+      {newName = Request.Form["client-name"];}
+      if (!String.IsNullOrEmpty(Request.Form["client-stylist"]))
+      {newStylist = Int32.Parse(Request.Form["client-stylist"]);}
 
+      Console.WriteLine("NEW "+newName+" : "+newStylist);
+      Console.WriteLine("OLD "+clientId);
+
+      Client.Find(clientId).Update(newName,newStylist);
+      StylistClientsViewModel myModel = new StylistClientsViewModel(id);
+      return View("StylistClients",myModel);
+    }
   }
 }

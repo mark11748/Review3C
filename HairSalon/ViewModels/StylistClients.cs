@@ -8,8 +8,9 @@ namespace HairSalon.ViewModels
   {
     private Stylist      _stylist;
     private List<Client> _clients = new List<Client>();
+    private int          _targetId;
 
-    public StylistClientsViewModel(int stylistId)
+    public StylistClientsViewModel(int stylistId, int targetClient = 0)
     {
       foreach (Stylist person in Stylist.GetAll())
       {
@@ -26,11 +27,17 @@ namespace HairSalon.ViewModels
           _clients.Add(person);
         }
       }
+      if (targetClient>0)
+      { _targetId=targetClient; }
     }
 
     public Stylist GetStylist()
     {return _stylist;}
     public List<Client> GetClients()
     {return _clients;}
+    public Client GetTarget()
+    {
+      return Client.Find(_targetId);
+    }
   }
 }

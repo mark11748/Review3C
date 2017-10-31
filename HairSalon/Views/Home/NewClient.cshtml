@@ -1,7 +1,7 @@
 @{Layout = "_Layout";}
 <br><br>
 <br><br>
-<form action="/Stylists/Clients/@Model.GetStylist().GetId()" method="post">
+<form action="/stylists/@Model.GetStylist().GetId()/clients" method="post">
   <label for="client-name">New client: </label><br>
   <input type="text" name="client-name" id="client-name" placeholder="ENTER CLIENT NAME"><br>
 
