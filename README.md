@@ -7,7 +7,8 @@
 This is a C# program that manages a database containing info on stylists and clients at a hair salon.
 
 ### Specfications
-* homepage starts by offering users a list of available stylists.
+* page starts by offering users a link to a list of available stylists.
+* @stylist list:
 
 |Behavior | Example Input| Example Output|
 | ---|:---:| :---:|
@@ -43,7 +44,9 @@ This is a C# program that manages a database containing info on stylists and cli
 
 ### Setup/Installation
 * Download from GitHub.
-* Use terminal command, "dotnet run" at top-level directory of project.
+* import the two databases at the top level directory into MAMP
+* Use terminal command, "dotnet restore" in "HairSalon.Solutions/HairSalon".
+* Use terminal command, "dotnet run" in "HairSalon.Solutions/HairSalon".
 * Enter URL given into your preferred browser
 
 ### Technologies Used
