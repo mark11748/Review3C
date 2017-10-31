@@ -33,7 +33,7 @@ namespace HairSalon.Controllers
     {
       Stylist newStylist = new Stylist(Request.Form["stylist-name"]);
       newStylist.Save();
-      return View("stylists",Stylist.GetAll());
+      return View("Stylists",Stylist.GetAll());
     }
     //Deletes all stylists
     [HttpGet("/stylists/delete")]
@@ -50,7 +50,7 @@ namespace HairSalon.Controllers
       return View(myModel);
     }
     //form to add clients to stylist
-    [HttpGet("/stylists/{id}/clients/newClient/")]
+    [HttpGet("/stylists/{id}/clients/new/")]
     public ActionResult NewClient(int id)
     {
       StylistClientsViewModel myModel = new StylistClientsViewModel(id);
@@ -66,18 +66,11 @@ namespace HairSalon.Controllers
 
       return View("StylistClients",myModel);
     }
-    //form to select client to delete
-    [HttpGet("/stylists/{id}/clients/DEL/")]
-    public ActionResult DeleteClient(int id)
-    {
-      StylistClientsViewModel myModel = new StylistClientsViewModel(id);
-      return View(myModel);
-    }
     //remove selected client and show client list for current stylist
-    [HttpPost("/stylists/{id}/clients/DEL/")]
-    public ActionResult RemoveClient(int id)
+    [HttpPost("/stylists/{id}/clients/{clientId}/remove/")]
+    public ActionResult RemoveClient(int id, int clientId)
     {
-      Client.Delete(Int32.Parse(Request.Form["client-id"]));
+      Client.Delete(clientId);
       // //create the new table
       // List<Client> masterList = Client.GetAll();
       // int index = 0;
@@ -104,13 +97,11 @@ namespace HairSalon.Controllers
     {
       string newName=null;
       int newStylist=0;
+      
       if (!String.IsNullOrEmpty(Request.Form["client-name"]))
       {newName = Request.Form["client-name"];}
       if (!String.IsNullOrEmpty(Request.Form["client-stylist"]))
       {newStylist = Int32.Parse(Request.Form["client-stylist"]);}
-
-      Console.WriteLine("NEW "+newName+" : "+newStylist);
-      Console.WriteLine("OLD "+clientId);
 
       Client.Find(clientId).Update(newName,newStylist);
       StylistClientsViewModel myModel = new StylistClientsViewModel(id);

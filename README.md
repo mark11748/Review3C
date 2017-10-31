@@ -43,11 +43,17 @@ This is a C# program that manages a database containing info on stylists and cli
 
 
 ### Setup/Installation
-* Download from GitHub.
-* import the two databases at the top level directory into MAMP
-* Use terminal command, "dotnet restore" in "HairSalon.Solutions/HairSalon".
-* Use terminal command, "dotnet run" in "HairSalon.Solutions/HairSalon".
-* Enter URL given into your preferred browser
+1. Download from GitHub.
+2. * import the two databases at the top level directory into your sql client of choice (this was made in MAMP) OR:
+
+   * start your sql client and use the following terminal commands to create the databases manually:       
+    CREATE DATABASE mark_woodward;      
+    USE mark_woodward;           
+    CREATE TABLE stylists (name VARCHAR(255),id serial PRIMARY KEY);                    
+    CREATE TABLE clients (name VARCHAR(255),stylist_id INT, id serial PRIMARY KEY);
+3. Use terminal command, "dotnet restore" in "HairSalon.Solutions/HairSalon".
+4. Use terminal command, "dotnet run" in "HairSalon.Solutions/HairSalon".
+5. Enter URL given into your preferred browser
 
 ### Technologies Used
 * .NET framework

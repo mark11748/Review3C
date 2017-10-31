@@ -2,19 +2,23 @@
 <br><br>
 <br><br>
 <p>Here are all clients assigned to @Model.GetStylist().GetName():</p>
-<p>----------------------------------------</p>
+<p>---------------------------------------------------</p>
 <ul>
   @if(Model.GetClients() != null && Model.GetClients().Count != 0)
   {
     foreach(var a in Model.GetClients())
-    { <li> @a.GetName() : @a.GetId() <a href="/stylists/@Model.GetStylist().GetId()/clients/@a.GetId()/Update">[*]</a></li> }
+    {
+      <form action="/stylists/@Model.GetStylist().GetId()/clients/@a.GetId()/remove" method="post">
+      <p>@a.GetName() : @a.GetId() <a href="/stylists/@Model.GetStylist().GetId()/clients/@a.GetId()/update">[UPDATE]</a> <button type="submit">DEL</button></p>
+      </form>
+      <br><br>
+    }
   }
 </ul>
-<p>----------------------------------------</p>
+<p>---------------------------------------------------</p>
 <br>
-<p>*click next to a client's name to update their information</p>
+<p>*click [UPDATE] next to a client's name to update their information</p>
+<p>**click DEL button next to a client's name to delete them from that list</p>
 <br>
 <br>
-<br>
-<p>Click <a href="/stylists/@Model.GetStylist().GetId()/clients/newClient">HERE</a> to add a client to the list.</p> <br>
-<p>Click <a href="/stylists/@Model.GetStylist().GetId()/clients/DEL">HERE</a> to remove a client from the list.</p> <br>
+<p>Click <a href="/stylists/@Model.GetStylist().GetId()/clients/new">HERE</a> to add a client to the list.</p> <br>

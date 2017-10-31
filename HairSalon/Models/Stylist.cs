@@ -9,9 +9,10 @@ namespace HairSalon.Models
         private string _name;
         private int _id;
         public Stylist(string name)
-        {
-            _name = name;
-        }
+        { _name = name; }
+        public Stylist(string name , int id)
+        { _name = name; _id = id; }
+
         public override bool Equals(System.Object otherStylist)
         {
             if (!(otherStylist is Stylist))
